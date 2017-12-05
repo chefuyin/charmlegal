@@ -1,0 +1,423 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>virtualbox安装CentOS虚拟机及使用xshell连接 | CharmLegal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="0. 导语近期学习的一些内容因为涉及到VPS的使用，于是买了搬瓦工，考虑到scrapy的代码是用python3写的，搬瓦工的vps上CentOS自带的还是python2.6，小白如我，在一番谷歌搜索后把它升级到了python3，然后突然发现yum失效了，接着一连串的问题都出现了。然后整个人都不好了，不得已重装系统，考虑到这种连环爆炸的痛苦，决定还是开始学习linux的使用了。不想装双系统，所以使用">
+<meta name="keywords" content="xshell,virtualbox,CentOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="virtualbox安装CentOS虚拟机及使用xshell连接">
+<meta property="og:url" content="http://charmlegal.com/2017/12/05/article7/index.html">
+<meta property="og:site_name" content="CharmLegal">
+<meta property="og:description" content="0. 导语近期学习的一些内容因为涉及到VPS的使用，于是买了搬瓦工，考虑到scrapy的代码是用python3写的，搬瓦工的vps上CentOS自带的还是python2.6，小白如我，在一番谷歌搜索后把它升级到了python3，然后突然发现yum失效了，接着一连串的问题都出现了。然后整个人都不好了，不得已重装系统，考虑到这种连环爆炸的痛苦，决定还是开始学习linux的使用了。不想装双系统，所以使用">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/11.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/12.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/13.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/14.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/15.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/16.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/17.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/18.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/19.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/20.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/21.5.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/21.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/21.5.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/22.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/21.5.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/23.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/21.5.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/24.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/25.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/26.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/1.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/2.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/27.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/28.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/3.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/29.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/30.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/31.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/32.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/4.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/5.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/6.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/7.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/8.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/9.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/10.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/10.1.png">
+<meta property="og:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/10.2.png">
+<meta property="og:updated_time" content="2017-12-05T10:48:29.190Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="virtualbox安装CentOS虚拟机及使用xshell连接">
+<meta name="twitter:description" content="0. 导语近期学习的一些内容因为涉及到VPS的使用，于是买了搬瓦工，考虑到scrapy的代码是用python3写的，搬瓦工的vps上CentOS自带的还是python2.6，小白如我，在一番谷歌搜索后把它升级到了python3，然后突然发现yum失效了，接着一连串的问题都出现了。然后整个人都不好了，不得已重装系统，考虑到这种连环爆炸的痛苦，决定还是开始学习linux的使用了。不想装双系统，所以使用">
+<meta name="twitter:image" content="http://charmlegal.com/images/xshell_connect_virtualbox/11.png">
+  
+    <link rel="alternative" href="/atom.xml" title="CharmLegal" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">CharmLegal</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">法律检索攻略、撸代码&amp;碎碎念</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="charmlegal.com">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-article7" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/05/article7/" class="article-date">
+  <time datetime="2017-12-04T16:00:00.000Z" itemprop="datePublished">2017-12-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/撸代码/">撸代码</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      virtualbox安装CentOS虚拟机及使用xshell连接
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      			
+			<!-- Table of Contents -->
+				
+				  <div id="toc" class="toc-article">
+					<strong class="toc-title">目录</strong>
+					<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-导语"><span class="toc-text">0. 导语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-virtualbox-安装CentOS"><span class="toc-text">1. virtualbox 安装CentOS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-CentOS-安装文件下载"><span class="toc-text">1.1 CentOS 安装文件下载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-virtualbox下载、安装"><span class="toc-text">1.2 virtualbox下载、安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-virtualbox安装CentOS7"><span class="toc-text">1.3 virtualbox安装CentOS7</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3-1-新建虚拟电脑：输入名称、配置内存"><span class="toc-text">1.3.1 新建虚拟电脑：输入名称、配置内存</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3-2-创建虚拟硬盘-配置文件"><span class="toc-text">1.3.2 创建虚拟硬盘:配置文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3-3-启动"><span class="toc-text">1.3.3 启动</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3-4-选取ISO文件"><span class="toc-text">1.3.4 选取ISO文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3-5-安装CentOS7"><span class="toc-text">1.3.5 安装CentOS7</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-使用xshell连接CentOS虚拟机"><span class="toc-text">2. 使用xshell连接CentOS虚拟机</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-设置CentOS虚拟机网络"><span class="toc-text">2.1 设置CentOS虚拟机网络</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-1-设置网络"><span class="toc-text">2.1.1 设置网络</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-2-桥接网络"><span class="toc-text">2.1.2 桥接网络</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-关闭防火墙，启动sshd"><span class="toc-text">2.2 关闭防火墙，启动sshd</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-1-查看防火墙状态"><span class="toc-text">2.2.1 查看防火墙状态</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-2-关闭防火墙"><span class="toc-text">2.2.2 关闭防火墙</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-3-禁止防火墙开机启动"><span class="toc-text">2.2.3 禁止防火墙开机启动</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-4-开启sshd服务并设置开机启动"><span class="toc-text">2.2.4 开启sshd服务并设置开机启动</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-查看虚拟机ip"><span class="toc-text">2.3 查看虚拟机ip</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-1-查看内网ip地址"><span class="toc-text">2.3.1 查看内网ip地址</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-2-在windows本机ping虚拟主机地址"><span class="toc-text">2.3.2 在windows本机ping虚拟主机地址</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-使用xshell连接"><span class="toc-text">2.4 使用xshell连接</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-4-1-下载xshell5并安装"><span class="toc-text">2.4.1 下载xshell5并安装</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-4-2-配置xshell"><span class="toc-text">2.4.2 配置xshell</span></a></li></ol></li></ol></li></ol>
+				  </div>
+							
+			<h3 id="0-导语"><a href="#0-导语" class="headerlink" title="0. 导语"></a><strong>0. 导语</strong></h3><p>近期学习的一些内容因为涉及到VPS的使用，于是买了搬瓦工，考虑到scrapy的代码是用python3写的，搬瓦工的vps上CentOS自带的还是python2.6，小白如我，在一番谷歌搜索后把它升级到了python3，然后突然发现yum失效了，接着一连串的问题都出现了。然后整个人都不好了，不得已重装系统，考虑到这种连环爆炸的痛苦，决定还是开始学习linux的使用了。<br>不想装双系统，所以使用了virtualbox安装虚拟机，但是虚拟机中会独占使用鼠标，即使取消独占还是会出现在虚拟机中使用鼠标后需要通过<code>ctrl+alt+del</code>来解除，所以还是用xshell来连接比较方便一点。本文使用virtualbox安装Centos将只是做个简单介绍，不作过多的细节描述。</p>
+<h3 id="1-virtualbox-安装CentOS"><a href="#1-virtualbox-安装CentOS" class="headerlink" title="1. virtualbox 安装CentOS"></a><strong>1. virtualbox 安装CentOS</strong></h3><h4 id="1-1-CentOS-安装文件下载"><a href="#1-1-CentOS-安装文件下载" class="headerlink" title="1.1 CentOS 安装文件下载"></a><strong>1.1 CentOS 安装文件下载</strong></h4><p>CentOS官网一般会提供很多镜像地址，下载页面也会根据ip地址自动选择最佳的镜像地址。<br><a href="https://www.centos.org/download/" target="_blank" rel="external">CentOS官网下载地址</a><br>一般有三种ISO文件可以选择：</p>
+<ul>
+<li>DVD：标准安装版，一般选择这个就可以了</li>
+<li>EVERYTHING:顾名思义，大而全版本，文件也大，包含了各种包</li>
+<li>MINIMAL:顾名思义，最简洁版本，适合自己动手的人，需要自己安装各种包<br><img src="/images/xshell_connect_virtualbox/11.png" alt="三种版本"></li>
+</ul>
+<p>下载也可以选择去<a href="https://mirrors.aliyun.com/centos/" target="_blank" rel="external">阿里云镜像站点</a>下载，速度相对快一些。<br><img src="/images/xshell_connect_virtualbox/12.png" alt="阿里云镜像"></p>
+<h4 id="1-2-virtualbox下载、安装"><a href="#1-2-virtualbox下载、安装" class="headerlink" title="1.2 virtualbox下载、安装"></a><strong>1.2 virtualbox下载、安装</strong></h4><p><a href="https://www.virtualbox.org/" target="_blank" rel="external">virtualbox官网</a><br>可以直接去官网下载，安装过程不表，一路next就可以了</p>
+<h4 id="1-3-virtualbox安装CentOS7"><a href="#1-3-virtualbox安装CentOS7" class="headerlink" title="1.3 virtualbox安装CentOS7"></a><strong>1.3 virtualbox安装CentOS7</strong></h4><h5 id="1-3-1-新建虚拟电脑：输入名称、配置内存"><a href="#1-3-1-新建虚拟电脑：输入名称、配置内存" class="headerlink" title="1.3.1 新建虚拟电脑：输入名称、配置内存"></a>1.3.1 新建虚拟电脑：输入名称、配置内存</h5><p>打开virtualbox输入名称centos，可以直接识别类型和版本，下载的也是<code>x86_64</code>版本的，所以就没有修改，内存可以修改为<code>1024MB</code>;虚拟硬盘选择默认的“现在创建虚拟硬盘”；点击“创建”。<br><img src="/images/xshell_connect_virtualbox/13.png" alt="新建虚拟电脑"></p>
+<h5 id="1-3-2-创建虚拟硬盘-配置文件"><a href="#1-3-2-创建虚拟硬盘-配置文件" class="headerlink" title="1.3.2 创建虚拟硬盘:配置文件"></a>1.3.2 创建虚拟硬盘:配置文件</h5><ul>
+<li>文件可以直接选择默认的“8.00GB”,其实意思就是给这个虚拟机配置的硬盘空间大小，一般无特殊需求默认大小即可；</li>
+<li>虚拟硬盘文件类型选择<code>VDI</code>即可；</li>
+<li>存储在物理硬盘上选择<code>动态分配</code>即可，即随着实际大小而变化的，不是分配后文件直接就占了最大的8GB。<br><img src="/images/xshell_connect_virtualbox/14.png" alt="创建虚拟硬盘"></li>
+</ul>
+<h5 id="1-3-3-启动"><a href="#1-3-3-启动" class="headerlink" title="1.3.3 启动"></a>1.3.3 启动</h5><p>点击绿色右箭头直接启动<br><img src="/images/xshell_connect_virtualbox/15.png" alt="启动"></p>
+<h5 id="1-3-4-选取ISO文件"><a href="#1-3-4-选取ISO文件" class="headerlink" title="1.3.4 选取ISO文件"></a>1.3.4 选取ISO文件</h5><ul>
+<li>点击右侧文件夹小图标打开CentOS的ISO文件路径<br><img src="/images/xshell_connect_virtualbox/16.png" alt="打开路径"></li>
+<li>选择ISO文件<br><img src="/images/xshell_connect_virtualbox/17.png" alt="选取ISO文件"></li>
+<li>点击启动<br><img src="/images/xshell_connect_virtualbox/18.png" alt="选取ISO文件1"></li>
+</ul>
+<h5 id="1-3-5-安装CentOS7"><a href="#1-3-5-安装CentOS7" class="headerlink" title="1.3.5 安装CentOS7"></a>1.3.5 安装CentOS7</h5><ul>
+<li>移动键盘光标至<code>Install CentOS 7</code>,然后敲回车键<br><img src="/images/xshell_connect_virtualbox/19.png" alt="install CentOS7"></li>
+<li>选择语言：考虑到后续均使用英文命令，所以选择了英文作为默认语言，另外汉字的显示会有些渲染问题，不太好看，所以也放弃了使用中文。选择后点击“continue”<br><img src="/images/xshell_connect_virtualbox/20.png" alt="select language"></li>
+<li>选择时区：进入<code>date &amp; time</code>,选择亚洲-上海。选择后点击左上角的<code>Done</code><br><img src="/images/xshell_connect_virtualbox/21.5.png" alt="select"><br><img src="/images/xshell_connect_virtualbox/21.png" alt="select timezone"></li>
+<li>选择安装位置：因为目前是学习使用，无其他额外需求，所以直接进入<code>INSTALLATION DESTINATION</code>选择了唯一的磁盘，然后点击<code>Done</code>。<br><img src="/images/xshell_connect_virtualbox/21.5.png" alt="select"><br><img src="/images/xshell_connect_virtualbox/22.png" alt="select destination"></li>
+<li>打开网络：进入<code>NETWORK &amp; HOSTNAME</code><br><img src="/images/xshell_connect_virtualbox/21.5.png" alt="select"><br><img src="/images/xshell_connect_virtualbox/23.png" alt="open Ethernet"></li>
+<li>选择GUI：进入<code>SOFTWARE SELECTION</code>,选中<code>server wiht gui</code>，这样安装完后就有界面了。选中后点击<code>Done</code>，系统会有短暂的load software的时间，load完毕后就可以右下角的<code>begin installation</code>了<br><img src="/images/xshell_connect_virtualbox/21.5.png" alt="select"><br><img src="/images/xshell_connect_virtualbox/24.png" alt="SELECT GUI"><br><img src="/images/xshell_connect_virtualbox/25.png" alt="load software"><br><img src="/images/xshell_connect_virtualbox/26.png" alt="begin installation"></li>
+<li><p>设置root用户及其他用户：安装过程中可以设置root用户密码和其他用户的名称及密码</p>
+</li>
+<li><p>后续就是慢慢安装了，细节不赘述了。</p>
+</li>
+</ul>
+<h3 id="2-使用xshell连接CentOS虚拟机"><a href="#2-使用xshell连接CentOS虚拟机" class="headerlink" title="2. 使用xshell连接CentOS虚拟机"></a><strong>2. 使用xshell连接CentOS虚拟机</strong></h3><h4 id="2-1-设置CentOS虚拟机网络"><a href="#2-1-设置CentOS虚拟机网络" class="headerlink" title="2.1 设置CentOS虚拟机网络"></a><strong>2.1 设置CentOS虚拟机网络</strong></h4><h5 id="2-1-1-设置网络"><a href="#2-1-1-设置网络" class="headerlink" title="2.1.1 设置网络"></a><strong>2.1.1 设置网络</strong></h5><p>安装完毕启动CentOS后，在virtualbox上方菜单栏选择“设备——网络——网络”<br><img src="/images/xshell_connect_virtualbox/1.png" alt="选择网络"></p>
+<h5 id="2-1-2-桥接网络"><a href="#2-1-2-桥接网络" class="headerlink" title="2.1.2 桥接网络"></a><strong>2.1.2 桥接网络</strong></h5><p>选择“桥接网络”，然后界面名称选择计算机的硬件网卡名称，然后点击“OK”<br><img src="/images/xshell_connect_virtualbox/2.png" alt="设置网络"></p>
+<h4 id="2-2-关闭防火墙，启动sshd"><a href="#2-2-关闭防火墙，启动sshd" class="headerlink" title="2.2 关闭防火墙，启动sshd"></a><strong>2.2 关闭防火墙，启动sshd</strong></h4><h5 id="2-2-1-查看防火墙状态"><a href="#2-2-1-查看防火墙状态" class="headerlink" title="2.2.1 查看防火墙状态"></a><strong>2.2.1 查看防火墙状态</strong></h5><p>使用<code>systemctl status firewalld</code>可以查看到当前防火墙是绿色的<code>active</code><br><img src="/images/xshell_connect_virtualbox/27.png" alt="systemctl status firewalld查看防火墙状态"></p>
+<h5 id="2-2-2-关闭防火墙"><a href="#2-2-2-关闭防火墙" class="headerlink" title="2.2.2 关闭防火墙"></a><strong>2.2.2 关闭防火墙</strong></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl stop firewalld</div></pre></td></tr></table></figure>
+<p>输入命令后再查看防火墙状态就变为了<code>inactive(dead)</code>，说明防火墙已经关闭了。<br><img src="/images/xshell_connect_virtualbox/28.png" alt="systemctl status firewalld查看防火墙状态"><br>注：在centos7中<code>service</code>命令被<code>systemctl</code>,但作为向后兼容,<code>service</code>命令仍然可以使用。参考文章：<a href="http://www.cnblogs.com/snrt111/p/6752173.html" target="_blank" rel="external">centos7 怎么用service命令启动服务</a><br>需要注意的是：<code>iptables</code>已经被移除，以<code>firewalld</code>替代了，所以网上有些使用<code>service iptables stop</code>和<code>chkconfig iptables off</code>是会出现问题的。<br><img src="/images/xshell_connect_virtualbox/3.png" alt="iptables"><br>其他防火墙相关的命令可以参考：<a href="http://www.aboutyun.com/thread-17535-1-1.html" target="_blank" rel="external">centos7搭建集群必知：centos7已经无iptables，只有firewall</a></p>
+<h5 id="2-2-3-禁止防火墙开机启动"><a href="#2-2-3-禁止防火墙开机启动" class="headerlink" title="2.2.3 禁止防火墙开机启动"></a><strong>2.2.3 禁止防火墙开机启动</strong></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl disable firewalld</div></pre></td></tr></table></figure>
+<p>可以查看输入命令前后的对比状态<br><img src="/images/xshell_connect_virtualbox/29.png" alt="disable firewalld"></p>
+<h5 id="2-2-4-开启sshd服务并设置开机启动"><a href="#2-2-4-开启sshd服务并设置开机启动" class="headerlink" title="2.2.4 开启sshd服务并设置开机启动"></a><strong>2.2.4 开启sshd服务并设置开机启动</strong></h5><ul>
+<li>可以看到开启前为inactive和disable<br><img src="/images/xshell_connect_virtualbox/30.png" alt="start sshd"></li>
+<li>开启sshd服务后的状态<br><img src="/images/xshell_connect_virtualbox/31.png" alt="start sshd"></li>
+<li>开启开机启动后的sshd状态<br><img src="/images/xshell_connect_virtualbox/32.png" alt="start sshd"></li>
+</ul>
+<h4 id="2-3-查看虚拟机ip"><a href="#2-3-查看虚拟机ip" class="headerlink" title="2.3 查看虚拟机ip"></a><strong>2.3 查看虚拟机ip</strong></h4><h5 id="2-3-1-查看内网ip地址"><a href="#2-3-1-查看内网ip地址" class="headerlink" title="2.3.1 查看内网ip地址"></a><strong>2.3.1 查看内网ip地址</strong></h5><p>使用<code>ifconfig</code>命令可以查看内网地址<br><img src="/images/xshell_connect_virtualbox/4.png" alt="start sshd"></p>
+<h5 id="2-3-2-在windows本机ping虚拟主机地址"><a href="#2-3-2-在windows本机ping虚拟主机地址" class="headerlink" title="2.3.2 在windows本机ping虚拟主机地址"></a><strong>2.3.2 在windows本机ping虚拟主机地址</strong></h5><p><img src="/images/xshell_connect_virtualbox/5.png" alt="ping ip"><br>可以看到ping成功了</p>
+<h4 id="2-4-使用xshell连接"><a href="#2-4-使用xshell连接" class="headerlink" title="2.4 使用xshell连接"></a><strong>2.4 使用xshell连接</strong></h4><h5 id="2-4-1-下载xshell5并安装"><a href="#2-4-1-下载xshell5并安装" class="headerlink" title="2.4.1 下载xshell5并安装"></a><strong>2.4.1 下载xshell5并安装</strong></h5><p><a href="http://www.netsarang.com/download/down_form.html?code=522" target="_blank" rel="external">xshell官方下载地址</a></p>
+<ul>
+<li>选择’home and school use’并填写相关信息就可以下载免费版了。<br><img src="/images/xshell_connect_virtualbox/6.png" alt="xshell5 download"></li>
+<li>安装<br>默认安装，不赘述<h5 id="2-4-2-配置xshell"><a href="#2-4-2-配置xshell" class="headerlink" title="2.4.2 配置xshell"></a><strong>2.4.2 配置xshell</strong></h5></li>
+<li>新建会话<br><img src="/images/xshell_connect_virtualbox/7.png" alt="新建会话"></li>
+<li>输入名称，主机名称输入虚拟主机的ip<br><img src="/images/xshell_connect_virtualbox/8.png" alt="输入ip"></li>
+<li>连接会话<br><img src="/images/xshell_connect_virtualbox/9.png" alt="连接会话"></li>
+<li>输入用户名<br><img src="/images/xshell_connect_virtualbox/10.png" alt="输入用户名"></li>
+<li>输入密码<br><img src="/images/xshell_connect_virtualbox/10.1.png" alt="输入密码"></li>
+<li>连接成功<br><img src="/images/xshell_connect_virtualbox/10.2.png" alt="连接成功"></li>
+</ul>
+<p>至此完工！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://charmlegal.com/2017/12/05/article7/" data-id="cjati524s000bxof9vv0lh35j" class="article-share-link" data-share="baidu" data-title="virtualbox安装CentOS虚拟机及使用xshell连接">分享到</a>
+      
+
+      
+        <a href="http://charmlegal.com/2017/12/05/article7/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CentOS/">CentOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/virtualbox/">virtualbox</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xshell/">xshell</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/05/article6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          Hexo—如何设置文章目录（TOC）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/03/article5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">法律检索攻略之三—案例的查找姿势</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2017/12/05/article7/" data-title="virtualbox安装CentOS虚拟机及使用xshell连接" data-url="http://charmlegal.com/2017/12/05/article7/"></div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/撸代码/">撸代码</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/法律检索攻略/">法律检索攻略</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Database/">Database</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/">MongoDB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TOC/">TOC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github-desktop/">github desktop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/virtualbox/">virtualbox</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/">vscode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xshell/">xshell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/攻略/">攻略</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/案例检索/">案例检索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/法律检索/">法律检索</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/法律法规/">法律法规</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/TOC/" style="font-size: 10px;">TOC</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github-desktop/" style="font-size: 10px;">github desktop</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/virtualbox/" style="font-size: 10px;">virtualbox</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/xshell/" style="font-size: 10px;">xshell</a> <a href="/tags/攻略/" style="font-size: 20px;">攻略</a> <a href="/tags/案例检索/" style="font-size: 10px;">案例检索</a> <a href="/tags/法律检索/" style="font-size: 20px;">法律检索</a> <a href="/tags/法律法规/" style="font-size: 10px;">法律法规</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/12/05/article6/">Hexo—如何设置文章目录（TOC）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/05/article7/">virtualbox安装CentOS虚拟机及使用xshell连接</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/03/article5/">法律检索攻略之三—案例的查找姿势</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/03/article4/">法律检索攻略之二——法律法规去哪里找？</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/20/article3/">hexo+git搭建自己域名博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://lawtribes.com" target="_blank">律商部落LawTribes</a>
+          </li>
+        
+          <li>
+            <a href="http://arvinxiang.com" target="_blank">主题作者</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Crow<br>
+      Powered by <a href="//hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"reqianduan"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>

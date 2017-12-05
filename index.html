@@ -73,6 +73,192 @@
     <div class="outer">
       <section id="main">
   
+    <article id="post-article6" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/05/article6/" class="article-date">
+  <time datetime="2017-12-04T16:00:00.000Z" itemprop="datePublished">2017-12-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/撸代码/">撸代码</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/05/article6/">Hexo—如何设置文章目录（TOC）</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      			
+			<!-- Table of Contents -->
+				
+				  <div id="toc" class="toc-article">
+					<strong class="toc-title">目录</strong>
+					<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-导语"><span class="toc-text">0. 导语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-修改主题的article-ejs文件"><span class="toc-text">1. 修改主题的article.ejs文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-找到article-ejs文件路径"><span class="toc-text">1.1 找到article.ejs文件路径</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-修改article-ejs文件"><span class="toc-text">1.2 修改article.ejs文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-修改主题的article-styl文件"><span class="toc-text">2. 修改主题的article.styl文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-找到article-styl文件路径"><span class="toc-text">2.1 找到article.styl文件路径</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-修改article-styl文件"><span class="toc-text">2.2 修改article.styl文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-文章中添加toc-true"><span class="toc-text">3. 文章中添加toc: true</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-其他注意事项"><span class="toc-text">4. 其他注意事项</span></a></li></ol>
+				  </div>
+							
+			<h3 id="0-导语"><a href="#0-导语" class="headerlink" title="0. 导语"></a><strong>0. 导语</strong></h3><p>写博客的时候有些写的比较啰嗦，加上图也多，难免会很长，所以设置个文章目录，看起来还是要方便很多；来，让我们开始面向谷歌编程吧~~<br>经过google后发现，在Hexo 2.4.1之后的版本才有 TOC 功能，在这之前要实现TOC目录需要借助hexo-toc插件才行，好在目前使用的已经是含有toc的版本。但是请注意：<strong>hexo-toc与已具备toc功能的Hexo版本不能共存</strong>，如果安装过hexo-toc的，还是建议删掉hexo-toc。</p>
+<h3 id="1-修改主题的article-ejs文件"><a href="#1-修改主题的article-ejs文件" class="headerlink" title="1. 修改主题的article.ejs文件"></a><strong>1. 修改主题的article.ejs文件</strong></h3><h4 id="1-1-找到article-ejs文件路径"><a href="#1-1-找到article-ejs文件路径" class="headerlink" title="1.1 找到article.ejs文件路径"></a><strong>1.1 找到article.ejs文件路径</strong></h4><p>要找到当前使用的主题（theme）文件夹,一般在<code>hexo\themes</code>下，我使用的是landscape-plus主题，所以在<code>hexo\themes\landscape-plus\layout\_partial</code>中。如下图<br><img src="/images/hexo_toc/1.png" alt="article.ejs"></p>
+<h4 id="1-2-修改article-ejs文件"><a href="#1-2-修改article-ejs文件" class="headerlink" title="1.2 修改article.ejs文件"></a><strong>1.2 修改article.ejs文件</strong></h4><p>主要是在文件中增加toc的设置，使用notepad++可以直接打开该文件，添加如下代码至<code>&lt;%- post.content %&gt;</code>之前。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;!-- Table of Contents --&gt;</div><div class="line">&lt;% if(post.toc == true)&#123; %&gt;</div><div class="line">&lt;div id=&quot;toc&quot; class=&quot;toc-article&quot;&gt;</div><div class="line">    &lt;strong class=&quot;toc-title&quot;&gt;目录&lt;/strong&gt;</div><div class="line">    &lt;%- toc(post.content,&#123;list_number:false&#125;) %&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;% &#125; %&gt;</div></pre></td></tr></table></figure>
+<p><img src="/images/hexo_toc/2.png" alt="ejs文件添加代码后的状态"><br><strong>注意</strong>：<code>if(post.toc == true)</code>是配合文章里面设置的，后续我们会专门说明，判断为true时显示目录，当然也不是所有文章都需要目录；<code>{list_number:false}</code>是我综合调试后加的，即自行设置目录序号，非自动生成序号，主要考虑是避免文章内无序号导致的难看，如在github论坛中就有人在<a href="https://github.com/hexojs/hexo/issues/408" target="_blank" rel="external">帖子</a>中反馈出现下图的问题：<br><img src="/images/hexo_toc/3.png" alt="目录序号乱码问题"></p>
+<h3 id="2-修改主题的article-styl文件"><a href="#2-修改主题的article-styl文件" class="headerlink" title="2. 修改主题的article.styl文件"></a><strong>2. 修改主题的article.styl文件</strong></h3><h4 id="2-1-找到article-styl文件路径"><a href="#2-1-找到article-styl文件路径" class="headerlink" title="2.1 找到article.styl文件路径"></a><strong>2.1 找到article.styl文件路径</strong></h4><p>该文件一般在主题的<code>source\css</code>文件夹下,我使用的landscape-plus主题的路径是<code>hexo\themes\landscape-plus\source\css\_partial</code> 如下图：<br><img src="/images/hexo_toc/4.png" alt="article.styl"></p>
+<h4 id="2-2-修改article-styl文件"><a href="#2-2-修改article-styl文件" class="headerlink" title="2.2 修改article.styl文件"></a><strong>2.2 修改article.styl文件</strong></h4><p>仍旧以notepad++打开该文档,在该文档的最后添加如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">/*toc*/</div><div class="line">.toc-article</div><div class="line">  background #eee</div><div class="line">  border 1px solid #bbb</div><div class="line">  border-radius 10px</div><div class="line">  margin 1.5em 0 0.3em 1.5em</div><div class="line">  padding 1.2em 1em 0 1em</div><div class="line">  max-width 28%</div><div class="line">.toc-title</div><div class="line">  font-size 120%</div><div class="line">#toc</div><div class="line">  line-height 1em</div><div class="line">  font-size 0.9em</div><div class="line">  float right</div><div class="line">  .toc</div><div class="line">    padding 0</div><div class="line">    margin 1em</div><div class="line">    line-height 1.8em</div><div class="line">    li</div><div class="line">      list-style-type none</div><div class="line">  .toc-child </div><div class="line">    margin-left 1em</div></pre></td></tr></table></figure></p>
+<p><img src="/images/hexo_toc/5.png" alt="styl文件添加代码后的状态"><br>当然也可以根据实际需要修改css文件，调整格式。</p>
+<h3 id="3-文章中添加toc-true"><a href="#3-文章中添加toc-true" class="headerlink" title="3. 文章中添加toc: true"></a><strong>3. 文章中添加toc: true</strong></h3><p>最后需要在文章的md文件中添加<code>toc: true</code>,像tags一样，注意hexo中文件的冒号之后有空格。添加后ejs文件中就可以根据此判断是否需要显示目录了。<br><img src="/images/hexo_toc/6.png" alt="md文章中修改toc"><br><img src="/images/hexo_toc/7.png" alt="toc最终效果"></p>
+<h3 id="4-其他注意事项"><a href="#4-其他注意事项" class="headerlink" title="4. 其他注意事项"></a><strong>4. 其他注意事项</strong></h3><p><code>hexo-toc</code>插件会导致无法使用hexo新版本中的toc，如果已经安装过的，可以使用<code>npm uninstall hexo-toc</code>卸载该插件。因为我就遇到了，解决方法来自该<a href="https://github.com/ppoffice/hexo-theme-icarus/issues/286" target="_blank" rel="external">页面的问题</a></p>
+<p>————————————————————————————————————</p>
+<p><strong>参考文章：</strong></p>
+<blockquote>
+<p>1.《为Hexo博客添加目录》：<a href="http://kuangqi.me/tricks/enable-table-of-contents-on-hexo/#修改Landscape主题的ejs文件" target="_blank" rel="external">http://kuangqi.me/tricks/enable-table-of-contents-on-hexo/#修改Landscape主题的ejs文件</a></p>
+<p>2.《为Hexo博文添加文章目录》:<a href="http://jerry011235.github.io/2015/05/06/%E4%B8%BAHexo%E5%8D%9A%E6%96%87%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E7%9B%AE%E5%BD%95/#启用目录" target="_blank" rel="external">http://jerry011235.github.io/2015/05/06/%E4%B8%BAHexo%E5%8D%9A%E6%96%87%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E7%9B%AE%E5%BD%95/#启用目录</a></p>
+<p>3.《在Hexo中给文章加目录(Table Of Contents)》：<a href="http://morningchen.com/2015/07/15/Table-Of-Contents-for-hexo/" target="_blank" rel="external">http://morningchen.com/2015/07/15/Table-Of-Contents-for-hexo/</a></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://charmlegal.com/2017/12/05/article6/" data-id="cjati524m000axof9ye7lkgiw" class="article-share-link" data-share="baidu" data-title="Hexo—如何设置文章目录（TOC）">分享到</a>
+      
+
+      
+        <a href="http://charmlegal.com/2017/12/05/article6/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TOC/">TOC</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-article7" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/05/article7/" class="article-date">
+  <time datetime="2017-12-04T16:00:00.000Z" itemprop="datePublished">2017-12-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/撸代码/">撸代码</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/05/article7/">virtualbox安装CentOS虚拟机及使用xshell连接</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      			
+			<!-- Table of Contents -->
+				
+				  <div id="toc" class="toc-article">
+					<strong class="toc-title">目录</strong>
+					<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-导语"><span class="toc-text">0. 导语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-virtualbox-安装CentOS"><span class="toc-text">1. virtualbox 安装CentOS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-CentOS-安装文件下载"><span class="toc-text">1.1 CentOS 安装文件下载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-virtualbox下载、安装"><span class="toc-text">1.2 virtualbox下载、安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-virtualbox安装CentOS7"><span class="toc-text">1.3 virtualbox安装CentOS7</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3-1-新建虚拟电脑：输入名称、配置内存"><span class="toc-text">1.3.1 新建虚拟电脑：输入名称、配置内存</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3-2-创建虚拟硬盘-配置文件"><span class="toc-text">1.3.2 创建虚拟硬盘:配置文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3-3-启动"><span class="toc-text">1.3.3 启动</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3-4-选取ISO文件"><span class="toc-text">1.3.4 选取ISO文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3-5-安装CentOS7"><span class="toc-text">1.3.5 安装CentOS7</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-使用xshell连接CentOS虚拟机"><span class="toc-text">2. 使用xshell连接CentOS虚拟机</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-设置CentOS虚拟机网络"><span class="toc-text">2.1 设置CentOS虚拟机网络</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-1-设置网络"><span class="toc-text">2.1.1 设置网络</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-2-桥接网络"><span class="toc-text">2.1.2 桥接网络</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-关闭防火墙，启动sshd"><span class="toc-text">2.2 关闭防火墙，启动sshd</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-1-查看防火墙状态"><span class="toc-text">2.2.1 查看防火墙状态</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-2-关闭防火墙"><span class="toc-text">2.2.2 关闭防火墙</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-3-禁止防火墙开机启动"><span class="toc-text">2.2.3 禁止防火墙开机启动</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-4-开启sshd服务并设置开机启动"><span class="toc-text">2.2.4 开启sshd服务并设置开机启动</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-查看虚拟机ip"><span class="toc-text">2.3 查看虚拟机ip</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-1-查看内网ip地址"><span class="toc-text">2.3.1 查看内网ip地址</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-2-在windows本机ping虚拟主机地址"><span class="toc-text">2.3.2 在windows本机ping虚拟主机地址</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-使用xshell连接"><span class="toc-text">2.4 使用xshell连接</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-4-1-下载xshell5并安装"><span class="toc-text">2.4.1 下载xshell5并安装</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-4-2-配置xshell"><span class="toc-text">2.4.2 配置xshell</span></a></li></ol></li></ol></li></ol>
+				  </div>
+							
+			<h3 id="0-导语"><a href="#0-导语" class="headerlink" title="0. 导语"></a><strong>0. 导语</strong></h3><p>近期学习的一些内容因为涉及到VPS的使用，于是买了搬瓦工，考虑到scrapy的代码是用python3写的，搬瓦工的vps上CentOS自带的还是python2.6，小白如我，在一番谷歌搜索后把它升级到了python3，然后突然发现yum失效了，接着一连串的问题都出现了。然后整个人都不好了，不得已重装系统，考虑到这种连环爆炸的痛苦，决定还是开始学习linux的使用了。<br>不想装双系统，所以使用了virtualbox安装虚拟机，但是虚拟机中会独占使用鼠标，即使取消独占还是会出现在虚拟机中使用鼠标后需要通过<code>ctrl+alt+del</code>来解除，所以还是用xshell来连接比较方便一点。本文使用virtualbox安装Centos将只是做个简单介绍，不作过多的细节描述。</p>
+<h3 id="1-virtualbox-安装CentOS"><a href="#1-virtualbox-安装CentOS" class="headerlink" title="1. virtualbox 安装CentOS"></a><strong>1. virtualbox 安装CentOS</strong></h3><h4 id="1-1-CentOS-安装文件下载"><a href="#1-1-CentOS-安装文件下载" class="headerlink" title="1.1 CentOS 安装文件下载"></a><strong>1.1 CentOS 安装文件下载</strong></h4><p>CentOS官网一般会提供很多镜像地址，下载页面也会根据ip地址自动选择最佳的镜像地址。<br><a href="https://www.centos.org/download/" target="_blank" rel="external">CentOS官网下载地址</a><br>一般有三种ISO文件可以选择：</p>
+<ul>
+<li>DVD：标准安装版，一般选择这个就可以了</li>
+<li>EVERYTHING:顾名思义，大而全版本，文件也大，包含了各种包</li>
+<li>MINIMAL:顾名思义，最简洁版本，适合自己动手的人，需要自己安装各种包<br><img src="/images/xshell_connect_virtualbox/11.png" alt="三种版本"></li>
+</ul>
+<p>下载也可以选择去<a href="https://mirrors.aliyun.com/centos/" target="_blank" rel="external">阿里云镜像站点</a>下载，速度相对快一些。<br><img src="/images/xshell_connect_virtualbox/12.png" alt="阿里云镜像"></p>
+<h4 id="1-2-virtualbox下载、安装"><a href="#1-2-virtualbox下载、安装" class="headerlink" title="1.2 virtualbox下载、安装"></a><strong>1.2 virtualbox下载、安装</strong></h4><p><a href="https://www.virtualbox.org/" target="_blank" rel="external">virtualbox官网</a><br>可以直接去官网下载，安装过程不表，一路next就可以了</p>
+<h4 id="1-3-virtualbox安装CentOS7"><a href="#1-3-virtualbox安装CentOS7" class="headerlink" title="1.3 virtualbox安装CentOS7"></a><strong>1.3 virtualbox安装CentOS7</strong></h4><h5 id="1-3-1-新建虚拟电脑：输入名称、配置内存"><a href="#1-3-1-新建虚拟电脑：输入名称、配置内存" class="headerlink" title="1.3.1 新建虚拟电脑：输入名称、配置内存"></a>1.3.1 新建虚拟电脑：输入名称、配置内存</h5><p>打开virtualbox输入名称centos，可以直接识别类型和版本，下载的也是<code>x86_64</code>版本的，所以就没有修改，内存可以修改为<code>1024MB</code>;虚拟硬盘选择默认的“现在创建虚拟硬盘”；点击“创建”。<br><img src="/images/xshell_connect_virtualbox/13.png" alt="新建虚拟电脑"></p>
+<h5 id="1-3-2-创建虚拟硬盘-配置文件"><a href="#1-3-2-创建虚拟硬盘-配置文件" class="headerlink" title="1.3.2 创建虚拟硬盘:配置文件"></a>1.3.2 创建虚拟硬盘:配置文件</h5><ul>
+<li>文件可以直接选择默认的“8.00GB”,其实意思就是给这个虚拟机配置的硬盘空间大小，一般无特殊需求默认大小即可；</li>
+<li>虚拟硬盘文件类型选择<code>VDI</code>即可；</li>
+<li>存储在物理硬盘上选择<code>动态分配</code>即可，即随着实际大小而变化的，不是分配后文件直接就占了最大的8GB。<br><img src="/images/xshell_connect_virtualbox/14.png" alt="创建虚拟硬盘"></li>
+</ul>
+<h5 id="1-3-3-启动"><a href="#1-3-3-启动" class="headerlink" title="1.3.3 启动"></a>1.3.3 启动</h5><p>点击绿色右箭头直接启动<br><img src="/images/xshell_connect_virtualbox/15.png" alt="启动"></p>
+<h5 id="1-3-4-选取ISO文件"><a href="#1-3-4-选取ISO文件" class="headerlink" title="1.3.4 选取ISO文件"></a>1.3.4 选取ISO文件</h5><ul>
+<li>点击右侧文件夹小图标打开CentOS的ISO文件路径<br><img src="/images/xshell_connect_virtualbox/16.png" alt="打开路径"></li>
+<li>选择ISO文件<br><img src="/images/xshell_connect_virtualbox/17.png" alt="选取ISO文件"></li>
+<li>点击启动<br><img src="/images/xshell_connect_virtualbox/18.png" alt="选取ISO文件1"></li>
+</ul>
+<h5 id="1-3-5-安装CentOS7"><a href="#1-3-5-安装CentOS7" class="headerlink" title="1.3.5 安装CentOS7"></a>1.3.5 安装CentOS7</h5><ul>
+<li>移动键盘光标至<code>Install CentOS 7</code>,然后敲回车键<br><img src="/images/xshell_connect_virtualbox/19.png" alt="install CentOS7"></li>
+<li>选择语言：考虑到后续均使用英文命令，所以选择了英文作为默认语言，另外汉字的显示会有些渲染问题，不太好看，所以也放弃了使用中文。选择后点击“continue”<br><img src="/images/xshell_connect_virtualbox/20.png" alt="select language"></li>
+<li>选择时区：进入<code>date &amp; time</code>,选择亚洲-上海。选择后点击左上角的<code>Done</code><br><img src="/images/xshell_connect_virtualbox/21.5.png" alt="select"><br><img src="/images/xshell_connect_virtualbox/21.png" alt="select timezone"></li>
+<li>选择安装位置：因为目前是学习使用，无其他额外需求，所以直接进入<code>INSTALLATION DESTINATION</code>选择了唯一的磁盘，然后点击<code>Done</code>。<br><img src="/images/xshell_connect_virtualbox/21.5.png" alt="select"><br><img src="/images/xshell_connect_virtualbox/22.png" alt="select destination"></li>
+<li>打开网络：进入<code>NETWORK &amp; HOSTNAME</code><br><img src="/images/xshell_connect_virtualbox/21.5.png" alt="select"><br><img src="/images/xshell_connect_virtualbox/23.png" alt="open Ethernet"></li>
+<li>选择GUI：进入<code>SOFTWARE SELECTION</code>,选中<code>server wiht gui</code>，这样安装完后就有界面了。选中后点击<code>Done</code>，系统会有短暂的load software的时间，load完毕后就可以右下角的<code>begin installation</code>了<br><img src="/images/xshell_connect_virtualbox/21.5.png" alt="select"><br><img src="/images/xshell_connect_virtualbox/24.png" alt="SELECT GUI"><br><img src="/images/xshell_connect_virtualbox/25.png" alt="load software"><br><img src="/images/xshell_connect_virtualbox/26.png" alt="begin installation"></li>
+<li><p>设置root用户及其他用户：安装过程中可以设置root用户密码和其他用户的名称及密码</p>
+</li>
+<li><p>后续就是慢慢安装了，细节不赘述了。</p>
+</li>
+</ul>
+<h3 id="2-使用xshell连接CentOS虚拟机"><a href="#2-使用xshell连接CentOS虚拟机" class="headerlink" title="2. 使用xshell连接CentOS虚拟机"></a><strong>2. 使用xshell连接CentOS虚拟机</strong></h3><h4 id="2-1-设置CentOS虚拟机网络"><a href="#2-1-设置CentOS虚拟机网络" class="headerlink" title="2.1 设置CentOS虚拟机网络"></a><strong>2.1 设置CentOS虚拟机网络</strong></h4><h5 id="2-1-1-设置网络"><a href="#2-1-1-设置网络" class="headerlink" title="2.1.1 设置网络"></a><strong>2.1.1 设置网络</strong></h5><p>安装完毕启动CentOS后，在virtualbox上方菜单栏选择“设备——网络——网络”<br><img src="/images/xshell_connect_virtualbox/1.png" alt="选择网络"></p>
+<h5 id="2-1-2-桥接网络"><a href="#2-1-2-桥接网络" class="headerlink" title="2.1.2 桥接网络"></a><strong>2.1.2 桥接网络</strong></h5><p>选择“桥接网络”，然后界面名称选择计算机的硬件网卡名称，然后点击“OK”<br><img src="/images/xshell_connect_virtualbox/2.png" alt="设置网络"></p>
+<h4 id="2-2-关闭防火墙，启动sshd"><a href="#2-2-关闭防火墙，启动sshd" class="headerlink" title="2.2 关闭防火墙，启动sshd"></a><strong>2.2 关闭防火墙，启动sshd</strong></h4><h5 id="2-2-1-查看防火墙状态"><a href="#2-2-1-查看防火墙状态" class="headerlink" title="2.2.1 查看防火墙状态"></a><strong>2.2.1 查看防火墙状态</strong></h5><p>使用<code>systemctl status firewalld</code>可以查看到当前防火墙是绿色的<code>active</code><br><img src="/images/xshell_connect_virtualbox/27.png" alt="systemctl status firewalld查看防火墙状态"></p>
+<h5 id="2-2-2-关闭防火墙"><a href="#2-2-2-关闭防火墙" class="headerlink" title="2.2.2 关闭防火墙"></a><strong>2.2.2 关闭防火墙</strong></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl stop firewalld</div></pre></td></tr></table></figure>
+<p>输入命令后再查看防火墙状态就变为了<code>inactive(dead)</code>，说明防火墙已经关闭了。<br><img src="/images/xshell_connect_virtualbox/28.png" alt="systemctl status firewalld查看防火墙状态"><br>注：在centos7中<code>service</code>命令被<code>systemctl</code>,但作为向后兼容,<code>service</code>命令仍然可以使用。参考文章：<a href="http://www.cnblogs.com/snrt111/p/6752173.html" target="_blank" rel="external">centos7 怎么用service命令启动服务</a><br>需要注意的是：<code>iptables</code>已经被移除，以<code>firewalld</code>替代了，所以网上有些使用<code>service iptables stop</code>和<code>chkconfig iptables off</code>是会出现问题的。<br><img src="/images/xshell_connect_virtualbox/3.png" alt="iptables"><br>其他防火墙相关的命令可以参考：<a href="http://www.aboutyun.com/thread-17535-1-1.html" target="_blank" rel="external">centos7搭建集群必知：centos7已经无iptables，只有firewall</a></p>
+<h5 id="2-2-3-禁止防火墙开机启动"><a href="#2-2-3-禁止防火墙开机启动" class="headerlink" title="2.2.3 禁止防火墙开机启动"></a><strong>2.2.3 禁止防火墙开机启动</strong></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">systemctl disable firewalld</div></pre></td></tr></table></figure>
+<p>可以查看输入命令前后的对比状态<br><img src="/images/xshell_connect_virtualbox/29.png" alt="disable firewalld"></p>
+<h5 id="2-2-4-开启sshd服务并设置开机启动"><a href="#2-2-4-开启sshd服务并设置开机启动" class="headerlink" title="2.2.4 开启sshd服务并设置开机启动"></a><strong>2.2.4 开启sshd服务并设置开机启动</strong></h5><ul>
+<li>可以看到开启前为inactive和disable<br><img src="/images/xshell_connect_virtualbox/30.png" alt="start sshd"></li>
+<li>开启sshd服务后的状态<br><img src="/images/xshell_connect_virtualbox/31.png" alt="start sshd"></li>
+<li>开启开机启动后的sshd状态<br><img src="/images/xshell_connect_virtualbox/32.png" alt="start sshd"></li>
+</ul>
+<h4 id="2-3-查看虚拟机ip"><a href="#2-3-查看虚拟机ip" class="headerlink" title="2.3 查看虚拟机ip"></a><strong>2.3 查看虚拟机ip</strong></h4><h5 id="2-3-1-查看内网ip地址"><a href="#2-3-1-查看内网ip地址" class="headerlink" title="2.3.1 查看内网ip地址"></a><strong>2.3.1 查看内网ip地址</strong></h5><p>使用<code>ifconfig</code>命令可以查看内网地址<br><img src="/images/xshell_connect_virtualbox/4.png" alt="start sshd"></p>
+<h5 id="2-3-2-在windows本机ping虚拟主机地址"><a href="#2-3-2-在windows本机ping虚拟主机地址" class="headerlink" title="2.3.2 在windows本机ping虚拟主机地址"></a><strong>2.3.2 在windows本机ping虚拟主机地址</strong></h5><p><img src="/images/xshell_connect_virtualbox/5.png" alt="ping ip"><br>可以看到ping成功了</p>
+<h4 id="2-4-使用xshell连接"><a href="#2-4-使用xshell连接" class="headerlink" title="2.4 使用xshell连接"></a><strong>2.4 使用xshell连接</strong></h4><h5 id="2-4-1-下载xshell5并安装"><a href="#2-4-1-下载xshell5并安装" class="headerlink" title="2.4.1 下载xshell5并安装"></a><strong>2.4.1 下载xshell5并安装</strong></h5><p><a href="http://www.netsarang.com/download/down_form.html?code=522" target="_blank" rel="external">xshell官方下载地址</a></p>
+<ul>
+<li>选择’home and school use’并填写相关信息就可以下载免费版了。<br><img src="/images/xshell_connect_virtualbox/6.png" alt="xshell5 download"></li>
+<li>安装<br>默认安装，不赘述<h5 id="2-4-2-配置xshell"><a href="#2-4-2-配置xshell" class="headerlink" title="2.4.2 配置xshell"></a><strong>2.4.2 配置xshell</strong></h5></li>
+<li>新建会话<br><img src="/images/xshell_connect_virtualbox/7.png" alt="新建会话"></li>
+<li>输入名称，主机名称输入虚拟主机的ip<br><img src="/images/xshell_connect_virtualbox/8.png" alt="输入ip"></li>
+<li>连接会话<br><img src="/images/xshell_connect_virtualbox/9.png" alt="连接会话"></li>
+<li>输入用户名<br><img src="/images/xshell_connect_virtualbox/10.png" alt="输入用户名"></li>
+<li>输入密码<br><img src="/images/xshell_connect_virtualbox/10.1.png" alt="输入密码"></li>
+<li>连接成功<br><img src="/images/xshell_connect_virtualbox/10.2.png" alt="连接成功"></li>
+</ul>
+<p>至此完工！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://charmlegal.com/2017/12/05/article7/" data-id="cjati524s000bxof9vv0lh35j" class="article-share-link" data-share="baidu" data-title="virtualbox安装CentOS虚拟机及使用xshell连接">分享到</a>
+      
+
+      
+        <a href="http://charmlegal.com/2017/12/05/article7/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CentOS/">CentOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/virtualbox/">virtualbox</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xshell/">xshell</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-article5" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/11/03/article5/" class="article-date">
@@ -125,7 +311,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://charmlegal.com/2017/11/03/article5/" data-id="cjat2v1f40006z4f91j592r62" class="article-share-link" data-share="baidu" data-title="法律检索攻略之三—案例的查找姿势">分享到</a>
+        <a data-url="http://charmlegal.com/2017/11/03/article5/" data-id="cjati52490007xof9kryy4mwg" class="article-share-link" data-share="baidu" data-title="法律检索攻略之三—案例的查找姿势">分享到</a>
       
 
       
@@ -203,7 +389,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://charmlegal.com/2017/11/03/article4/" data-id="cjat2v1ex0004z4f9016f3juv" class="article-share-link" data-share="baidu" data-title="法律检索攻略之二——法律法规去哪里找？">分享到</a>
+        <a data-url="http://charmlegal.com/2017/11/03/article4/" data-id="cjati52460006xof9r3fxgagu" class="article-share-link" data-share="baidu" data-title="法律检索攻略之二——法律法规去哪里找？">分享到</a>
       
 
       
@@ -366,7 +552,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://charmlegal.com/2017/10/20/article3/" data-id="cjat2v1ez0005z4f9tyadn7xw" class="article-share-link" data-share="baidu" data-title="hexo+git搭建自己域名博客">分享到</a>
+        <a data-url="http://charmlegal.com/2017/10/20/article3/" data-id="cjati52440005xof921yysuhh" class="article-share-link" data-share="baidu" data-title="hexo+git搭建自己域名博客">分享到</a>
       
 
       
@@ -457,7 +643,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://charmlegal.com/2017/10/20/article2/" data-id="cjat2v1eo0001z4f9j6dwvjx2" class="article-share-link" data-share="baidu" data-title="法律检索攻略之一——site命令使用">分享到</a>
+        <a data-url="http://charmlegal.com/2017/10/20/article2/" data-id="cjati523w0002xof90diyw6hs" class="article-share-link" data-share="baidu" data-title="法律检索攻略之一——site命令使用">分享到</a>
       
 
       
@@ -545,7 +731,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://charmlegal.com/2017/10/18/article1/" data-id="cjat2v1ee0000z4f9daprglxl" class="article-share-link" data-share="baidu" data-title="WINODWS系统下MONGODB的配置">分享到</a>
+        <a data-url="http://charmlegal.com/2017/10/18/article1/" data-id="cjati523n0001xof9eixwc28o" class="article-share-link" data-share="baidu" data-title="WINODWS系统下MONGODB的配置">分享到</a>
       
 
       
@@ -571,7 +757,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/撸代码/">撸代码</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/法律检索攻略/">法律检索攻略</a><span class="category-list-count">3</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/撸代码/">撸代码</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/法律检索攻略/">法律检索攻略</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -580,7 +766,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Database/">Database</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/">MongoDB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github-desktop/">github desktop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/">vscode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/攻略/">攻略</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/案例检索/">案例检索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/法律检索/">法律检索</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/法律法规/">法律法规</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Database/">Database</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/">MongoDB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TOC/">TOC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github-desktop/">github desktop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/virtualbox/">virtualbox</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/">vscode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xshell/">xshell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/攻略/">攻略</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/案例检索/">案例检索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/法律检索/">法律检索</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/法律法规/">法律法规</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -589,7 +775,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github-desktop/" style="font-size: 10px;">github desktop</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/攻略/" style="font-size: 20px;">攻略</a> <a href="/tags/案例检索/" style="font-size: 10px;">案例检索</a> <a href="/tags/法律检索/" style="font-size: 20px;">法律检索</a> <a href="/tags/法律法规/" style="font-size: 10px;">法律法规</a>
+      <a href="/tags/CentOS/" style="font-size: 10px;">CentOS</a> <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/TOC/" style="font-size: 10px;">TOC</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github-desktop/" style="font-size: 10px;">github desktop</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/virtualbox/" style="font-size: 10px;">virtualbox</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/xshell/" style="font-size: 10px;">xshell</a> <a href="/tags/攻略/" style="font-size: 20px;">攻略</a> <a href="/tags/案例检索/" style="font-size: 10px;">案例检索</a> <a href="/tags/法律检索/" style="font-size: 20px;">法律检索</a> <a href="/tags/法律法规/" style="font-size: 10px;">法律法规</a>
     </div>
   </div>
 
@@ -598,7 +784,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -610,6 +796,14 @@
       <ul>
         
           <li>
+            <a href="/2017/12/05/article6/">Hexo—如何设置文章目录（TOC）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/05/article7/">virtualbox安装CentOS虚拟机及使用xshell连接</a>
+          </li>
+        
+          <li>
             <a href="/2017/11/03/article5/">法律检索攻略之三—案例的查找姿势</a>
           </li>
         
@@ -619,14 +813,6 @@
         
           <li>
             <a href="/2017/10/20/article3/">hexo+git搭建自己域名博客</a>
-          </li>
-        
-          <li>
-            <a href="/2017/10/20/article2/">法律检索攻略之一——site命令使用</a>
-          </li>
-        
-          <li>
-            <a href="/2017/10/18/article1/">WINODWS系统下MONGODB的配置</a>
           </li>
         
       </ul>
