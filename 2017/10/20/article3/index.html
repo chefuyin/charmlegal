@@ -1,0 +1,471 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>hexo+git搭建自己域名博客 | CharmLegal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="导语：Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。如果不想费心费力的去写HTML的话，也不愿意花费租用主机且想有自己独特域名的，选用GitHub+hexo是个不错的选择。 一、 官方文档：hexo官方文档:英文 hexo官方文档:中文 二、 基础环境说明：1. 操作系统：win10 64位2. 配">
+<meta name="keywords" content="hexo,blog,node.js,git,github desktop,vscode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo+git搭建自己域名博客">
+<meta property="og:url" content="http://charmlegal.com/2017/10/20/article3/index.html">
+<meta property="og:site_name" content="CharmLegal">
+<meta property="og:description" content="导语：Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。如果不想费心费力的去写HTML的话，也不愿意花费租用主机且想有自己独特域名的，选用GitHub+hexo是个不错的选择。 一、 官方文档：hexo官方文档:英文 hexo官方文档:中文 二、 基础环境说明：1. 操作系统：win10 64位2. 配">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/2.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/0.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/1.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/3.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/5.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/6.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/7.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/8.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/9.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/10.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/11.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/4.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/12.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/13.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/14.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/15.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/16.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/17.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/18.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/19.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/20.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/21.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/22.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/23.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/24.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/25.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/26.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/27.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/28.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/32.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/33.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/34.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/35.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/31.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/29.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/30.png">
+<meta property="og:image" content="http://charmlegal.com/images/hexo/36.png">
+<meta property="og:updated_time" content="2017-12-05T03:07:09.423Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hexo+git搭建自己域名博客">
+<meta name="twitter:description" content="导语：Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。如果不想费心费力的去写HTML的话，也不愿意花费租用主机且想有自己独特域名的，选用GitHub+hexo是个不错的选择。 一、 官方文档：hexo官方文档:英文 hexo官方文档:中文 二、 基础环境说明：1. 操作系统：win10 64位2. 配">
+<meta name="twitter:image" content="http://charmlegal.com/images/hexo/2.png">
+  
+    <link rel="alternative" href="/atom.xml" title="CharmLegal" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">CharmLegal</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">法律检索攻略、撸代码&amp;碎碎念</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="charmlegal.com">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-article3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/20/article3/" class="article-date">
+  <time datetime="2017-10-20T14:03:39.000Z" itemprop="datePublished">2017-10-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/撸代码/">撸代码</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      hexo+git搭建自己域名博客
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      			
+			<!-- Table of Contents -->
+				
+				  <div id="toc" class="toc-article">
+					<strong class="toc-title">目录</strong>
+					<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#导语："><span class="toc-text">导语：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#一、-官方文档："><span class="toc-text">一、 官方文档：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、-基础环境说明："><span class="toc-text">二、 基础环境说明：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-操作系统：win10-64位"><span class="toc-text">1. 操作系统：win10 64位</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-配置环境：node-js-github-desktop"><span class="toc-text">2. 配置环境：node.js + github desktop</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三、-配置hexo基础环境："><span class="toc-text">三、 配置hexo基础环境：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-下载node-js"><span class="toc-text">1.下载node.js</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-下载github-desktop"><span class="toc-text">2. 下载github desktop</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四、下载、安装hexo"><span class="toc-text">四、下载、安装hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-通过npm下载hexo"><span class="toc-text">1. 通过npm下载hexo</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-设置初始化文件夹"><span class="toc-text">2. 设置初始化文件夹</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#五、修改配置信息"><span class="toc-text">五、修改配置信息</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-使用文本编辑器打开-config-yml"><span class="toc-text">1. 使用文本编辑器打开_config.yml</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-自定义部分信息"><span class="toc-text">2. 自定义部分信息</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-deploy可以暂不改"><span class="toc-text"> 3.deploy可以暂不改</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-其他文件可以不必修改"><span class="toc-text">4. 其他文件可以不必修改</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-修改完毕后保存-config-yml文件"><span class="toc-text">5. 修改完毕后保存_config.yml文件</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#六、hexo的使用"><span class="toc-text">六、hexo的使用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-hexo-创建文章"><span class="toc-text">1. hexo 创建文章</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-编辑文章"><span class="toc-text">2. 编辑文章</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-生成静态文件"><span class="toc-text">3. 生成静态文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-本地服务器预览"><span class="toc-text">4. 本地服务器预览</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#七、github-注册、同步"><span class="toc-text">七、github 注册、同步</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-github-注册"><span class="toc-text"> 1.github 注册</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-新建仓库"><span class="toc-text">2. 新建仓库</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-复制hexo里的public文件夹中的所有文件到本地仓库"><span class="toc-text">3. 复制hexo里的public文件夹中的所有文件到本地仓库</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-提交修改，然后同步"><span class="toc-text">4. 提交修改，然后同步</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#八、域名注册与绑定"><span class="toc-text">八、域名注册与绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-注册域名"><span class="toc-text">1. 注册域名</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-使用DNSPOD来解析域名"><span class="toc-text">2. 使用DNSPOD来解析域名</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-github-仓库里添加CNAME"><span class="toc-text">3.github 仓库里添加CNAME</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-进入DNSPOD去绑定域名，设置解析"><span class="toc-text">4. 进入DNSPOD去绑定域名，设置解析</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-其他注意事项"><span class="toc-text">5. 其他注意事项:</span></a></li></ol></li></ol>
+				  </div>
+							
+			<h4 id="导语："><a href="#导语：" class="headerlink" title="导语："></a>导语：</h4><p><code>Hexo</code> 是一个快速、简洁且高效的博客框架。<code>Hexo</code> 使用 <code>Markdown</code>（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成<strong>静态网页</strong>。<br><strong>如果不想费心费力的去写HTML的话，也不愿意花费租用主机且想有自己独特域名的，选用GitHub+hexo是个不错的选择。</strong></p>
+<h4 id="一、-官方文档："><a href="#一、-官方文档：" class="headerlink" title="一、 官方文档："></a>一、 官方文档：</h4><p><a href="https://hexo.io/docs/index.html" target="_blank" rel="external">hexo官方文档:英文</a></p>
+<p><a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="external">hexo官方文档:中文</a></p>
+<h4 id="二、-基础环境说明："><a href="#二、-基础环境说明：" class="headerlink" title="二、 基础环境说明："></a>二、 基础环境说明：</h4><h5 id="1-操作系统：win10-64位"><a href="#1-操作系统：win10-64位" class="headerlink" title="1. 操作系统：win10 64位"></a><strong>1. 操作系统</strong>：win10 64位</h5><h5 id="2-配置环境：node-js-github-desktop"><a href="#2-配置环境：node-js-github-desktop" class="headerlink" title="2. 配置环境：node.js + github desktop"></a><strong>2. 配置环境</strong>：<code>node.js</code> + <code>github desktop</code></h5><p><strong>官方文档的配置采用的是：</strong><code>node.js</code> +<code>git</code>。<br><img src="/images/hexo/2.png" alt="git截图"><br><strong>说明一下：</strong>在这里我用Github desktop替换了<code>git</code>，因为我是小白入门，不是特别喜欢<code>git</code>那种命令行的操作，更喜欢Gui一些，所以宁愿用直观牺牲掉高效。不过，如果你已经熟悉<code>git</code>的操作了，完全可以使用<code>git</code>；当然也可以选择后续逐步来适应<code>git</code>。<br><img src="/images/hexo/0.png" alt="官方手册环境配置要求"></p>
+<h4 id="三、-配置hexo基础环境："><a href="#三、-配置hexo基础环境：" class="headerlink" title="三、 配置hexo基础环境："></a>三、 配置hexo基础环境：</h4><h5 id="1-下载node-js"><a href="#1-下载node-js" class="headerlink" title="1.下载node.js"></a><strong>1.下载node.js</strong></h5><p><code>Node.js</code> 是一个基于 <code>Chrome V8</code> 引擎的 <code>JavaScript</code> 运行环境。<code>Node.js</code> 的包管理器 <code>npm</code>，是全球最大的开源库生态系统。<code>hexo</code>就是其中的一个包。</p>
+<p><a href="https://nodejs.org/en/" target="_blank" rel="external">node.js官网下载地址</a></p>
+<p><img src="/images/hexo/1.png" alt="可以选择LTS版本"></p>
+<p><a href="http://nodejs.cn/download/" target="_blank" rel="external">node.js中文站下载地址</a></p>
+<p>因为已经安装过了，就懒得安装截图了。</p>
+<h5 id="2-下载github-desktop"><a href="#2-下载github-desktop" class="headerlink" title="2. 下载github desktop"></a><strong>2. 下载github desktop</strong></h5><ul>
+<li>github desktop下载<br><a href="">github desktop下载地址</a></li>
+</ul>
+<p><img src="/images/hexo/3.png" alt="github desktop"></p>
+<p>下载后先安装即可，后文讲如何注册、创建仓库、设置域名等</p>
+<h4 id="四、下载、安装hexo"><a href="#四、下载、安装hexo" class="headerlink" title="四、下载、安装hexo"></a>四、下载、安装hexo</h4><h5 id="1-通过npm下载hexo"><a href="#1-通过npm下载hexo" class="headerlink" title="1. 通过npm下载hexo"></a><strong>1. 通过npm下载hexo</strong></h5><p>在命令行可以通过<code>npm</code>命令下载<code>hexo</code>:</p>
+<p><code>$ npm install -g hexo-cli</code></p>
+<p>温馨提示：<strong>纯小白请注意，命令行输入时不含<code>$</code>符号</strong>；<br>网速可能会有些慢，耗时会有点久，如果你知道梯子怎么用，可以搭起来，稍微会快点。</p>
+<h5 id="2-设置初始化文件夹"><a href="#2-设置初始化文件夹" class="headerlink" title="2. 设置初始化文件夹"></a><strong>2. 设置初始化文件夹</strong></h5><p>可以先建好文件夹，然后在文件夹使用<code>shift</code>+鼠标右键，然后选择打开命名行。我的是win10用的是powershell，效果没啥差别。<br><img src="/images/hexo/5.png" alt="shift+右键"></p>
+<ul>
+<li>在命令行输入:<br><code>$ hexo init &lt;folder&gt;</code><br>注意：<code>&lt;folder</code>是你打算存放的目标文件夹名字</li>
+<li>切换至目标文件：<br><code>$ cd &lt;folder&gt;</code></li>
+<li>输入命令：<br><code>$ npm install</code></li>
+<li>文件夹结构<br>完成上述步骤后，文件夹大体如下（我的因为使用过，会有细微差别）：<br><img src="/images/hexo/6.png" alt="文件夹结构"></li>
+</ul>
+<h4 id="五、修改配置信息"><a href="#五、修改配置信息" class="headerlink" title="五、修改配置信息"></a>五、修改配置信息</h4><h5 id="1-使用文本编辑器打开-config-yml"><a href="#1-使用文本编辑器打开-config-yml" class="headerlink" title="1. 使用文本编辑器打开_config.yml"></a><strong>1. 使用文本编辑器打开<code>_config.yml</code></strong></h5><p>文件夹内有个<code>_config.yml</code>，这就是配置文件，可以使用文本编辑器（如：Notepad++：<a href="https://notepad-plus-plus.org/download/v7.5.1.html" target="_blank" rel="external">官网下载地址</a>）打开</p>
+<h5 id="2-自定义部分信息"><a href="#2-自定义部分信息" class="headerlink" title="2. 自定义部分信息"></a><strong>2. 自定义部分信息</strong></h5><p>主副标题、作者、描述：可以自定义<br>语言：可以参照下图设置为中文<br>时区：可以参照下图设置为亚洲上海<br>url：改为自己注册的域名</p>
+<p><img src="/images/hexo/7.png" alt="自定义信息"></p>
+<h5 id="3-deploy可以暂不改"><a href="#3-deploy可以暂不改" class="headerlink" title=" 3.deploy可以暂不改"></a><strong> 3.deploy可以暂不改</strong></h5><p>注：因为我们使用GitHub desktop来同步文件到GitHub，所以后续不适用deploy来发布、更新网站，所以暂时可以不用修改，如果你会使用git且愿意使用的，可以参照官方文档步骤设置。<br><img src="/images/hexo/8.png" alt="deploy"></p>
+<h5 id="4-其他文件可以不必修改"><a href="#4-其他文件可以不必修改" class="headerlink" title="4. 其他文件可以不必修改"></a><strong>4. 其他文件可以不必修改</strong></h5><h5 id="5-修改完毕后保存-config-yml文件"><a href="#5-修改完毕后保存-config-yml文件" class="headerlink" title="5. 修改完毕后保存_config.yml文件"></a><strong>5. 修改完毕后保存<code>_config.yml</code>文件</strong></h5><h4 id="六、hexo的使用"><a href="#六、hexo的使用" class="headerlink" title="六、hexo的使用"></a>六、hexo的使用</h4><h5 id="1-hexo-创建文章"><a href="#1-hexo-创建文章" class="headerlink" title="1. hexo 创建文章"></a><strong>1. hexo 创建文章</strong></h5><p>使用如下命令可以创建新文章：<br><code>$ hexo new [layout] &lt;title&gt;</code></p>
+<p>可以在命令中指定文章的布局（layout），默认为 post，可以通过修改 <code>_config.yml</code> 中的 <code>default_layout</code> 参数来指定默认布局。由于我们并未修改，所以可以直接使用<code>$ hexo new &lt;title</code>创建文章。</p>
+<p><strong>注意</strong>:<code>&lt;title</code>即文章名，没有尖括号</p>
+<h5 id="2-编辑文章"><a href="#2-编辑文章" class="headerlink" title="2. 编辑文章"></a><strong>2. 编辑文章</strong></h5><ul>
+<li>查找到<code>.md</code>文件<br>由于layout我们并未修改，所以默认在hexo目标文件夹的<code>\source\_posts</code>文件夹下，为<code>&lt;title.md&gt;</code>文件，该文件可以使用文本编辑器进行编辑，使用MARKDOWN语法。</li>
+<li>vscode 下载<br>目前我使用的是VSCODE,可以配合插件在编辑同时预览。</li>
+</ul>
+<p><a href="https://code.visualstudio.com/" target="_blank" rel="external">vscode官方网站</a></p>
+<ul>
+<li>Markdown插件<br>安装vscode后可以打开“拓展”，搜索<code>Auto-Open Markdown Preview</code>插件<br><img src="/images/hexo/9.png" alt="markdown插件"><br>安装插件后打开<code>.md</code>文件进行编辑，点击右上角预览图标开启预览<br><img src="/images/hexo/10.png" alt="vscode markdown预览"></li>
+</ul>
+<h5 id="3-生成静态文件"><a href="#3-生成静态文件" class="headerlink" title="3. 生成静态文件"></a><strong>3. 生成静态文件</strong></h5><ul>
+<li><p>文章编辑完成后，可以通过如下命令来生成静态文件：<code>$ hexo generate</code> 或者<code>$ hexo g</code>；</p>
+</li>
+<li><p>文件生成后，会产生一个<code>public</code>文件夹，这个文件夹里的内容就是需要我们同步到GitHub的内容了。</p>
+</li>
+</ul>
+<h5 id="4-本地服务器预览"><a href="#4-本地服务器预览" class="headerlink" title="4. 本地服务器预览"></a><strong>4. 本地服务器预览</strong></h5><ul>
+<li>在命令行输入如下命令启动服务器：</li>
+</ul>
+<p><code>$ hexo server</code><br><img src="/images/hexo/11.png" alt="启动本地服务器"></p>
+<ul>
+<li>在浏览器搜索栏里输入<code>localhost:4000</code>就可以预览到网站了</li>
+<li><code>ctrl+c</code>可以退出本地服务器</li>
+</ul>
+<h4 id="七、github-注册、同步"><a href="#七、github-注册、同步" class="headerlink" title="七、github 注册、同步"></a>七、github 注册、同步</h4><h5 id="1-github-注册"><a href="#1-github-注册" class="headerlink" title=" 1.github 注册"></a><strong> 1.github 注册</strong></h5><p><img src="/images/hexo/4.png" alt="注册github"></p>
+<h5 id="2-新建仓库"><a href="#2-新建仓库" class="headerlink" title="2. 新建仓库"></a><strong>2. 新建仓库</strong></h5><ul>
+<li>通过“new repository”新建代码仓库，届时用于存储博客需要展示的页面等文件<br><img src="/images/hexo/12.png" alt="新建仓库"></li>
+<li><p>使用”用户名”+”github.io”组合命名仓库，注意每个账户仅能配置一个这样的仓库。<br>实例中用户名”yin”,所以用”yin.github.io”<br><img src="/images/hexo/13.png" alt="设置名字"></p>
+</li>
+<li><p>将仓库克隆到本地<br>用客户端打开——然后选择仓库本地存储路径——保存<br><img src="/images/hexo/14.png" alt="用desktop clone到本地"></p>
+</li>
+</ul>
+<p><img src="/images/hexo/15.png" alt="选择路径，然后clone"></p>
+<h5 id="3-复制hexo里的public文件夹中的所有文件到本地仓库"><a href="#3-复制hexo里的public文件夹中的所有文件到本地仓库" class="headerlink" title="3. 复制hexo里的public文件夹中的所有文件到本地仓库"></a><strong>3. 复制hexo里的public文件夹中的所有文件到本地仓库</strong></h5><p>复制粘贴到本地仓库后，GitHub desktop就可以自动发现变化了<br><img src="/images/hexo/16.png" alt="复制文件"><br><img src="/images/hexo/17.png" alt="粘贴文件"><br><img src="/images/hexo/18.png" alt="github desktop发现文件"></p>
+<h5 id="4-提交修改，然后同步"><a href="#4-提交修改，然后同步" class="headerlink" title="4. 提交修改，然后同步"></a><strong>4. 提交修改，然后同步</strong></h5><ul>
+<li>选择”master”，填写commit说明，然后点击”commit to master”,commit后其实4就会发生变化,然后选择”push origin”,完成同步。这样在网页版看到的就是同步后的内容了。<br><img src="/images/hexo/19.png" alt="commit"></li>
+</ul>
+<p><img src="/images/hexo/20.png" alt="push origin"></p>
+<p><img src="/images/hexo/21.png" alt="github repository"></p>
+<ul>
+<li>关于git的用法，还有很多很多，具体可以学习廖雪峰的教程：<a href="https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">廖雪峰博客</a></li>
+</ul>
+<h4 id="八、域名注册与绑定"><a href="#八、域名注册与绑定" class="headerlink" title="八、域名注册与绑定"></a>八、域名注册与绑定</h4><h5 id="1-注册域名"><a href="#1-注册域名" class="headerlink" title="1. 注册域名"></a><strong>1. 注册域名</strong></h5><p>国内的域名注册商一般需要做备案，为了偷懒，我直接在“狗爹”<a href="https://godaddy.com" target="_blank" rel="external">godaddy.com</a>上注册的。</p>
+<ul>
+<li>挑选喜欢的域名，添加到购物车<br><img src="/images/hexo/22.png" alt="域名示例"></li>
+<li>隐私保护不需要的话可以选“不，谢谢”<br><img src="/images/hexo/23.png" alt="隐私保护"></li>
+<li>虚拟主机选“不，谢谢”，因为我们后续将使用GitHub托管内容<br><img src="/images/hexo/24.png" alt="虚拟主机"></li>
+<li>前去付款<br><img src="/images/hexo/25.png" alt="订单信息"></li>
+<li>开始付款，填写结算信息，可以选择支付宝和银联<br><img src="/images/hexo/26.png" alt="付款页面"></li>
+</ul>
+<h5 id="2-使用DNSPOD来解析域名"><a href="#2-使用DNSPOD来解析域名" class="headerlink" title="2. 使用DNSPOD来解析域名"></a><strong>2. 使用DNSPOD来解析域名</strong></h5><ul>
+<li><p>域名注册完成后进入“我的产品”，示例是我自己的域名<br><img src="/images/hexo/27.png" alt="域名"></p>
+</li>
+<li><p>自定义域名服务器:<br>DNSPOD免费的域名服务器分别如下，添加后点击保存</p>
+</li>
+</ul>
+<p><code>f1g1ns1.dnspod.net</code></p>
+<p><code>f1g1ns2.dnspod.net</code><br><img src="/images/hexo/28.png" alt="自定义域名服务器"></p>
+<h5 id="3-github-仓库里添加CNAME"><a href="#3-github-仓库里添加CNAME" class="headerlink" title="3.github 仓库里添加CNAME"></a><strong>3.github 仓库里添加CNAME</strong></h5><ul>
+<li>通过“create new file”添加CNAME<br><img src="/images/hexo/32.png" alt="创建文件"></li>
+<li>注意CNAME文件名为大写，且<strong>没有后缀名</strong><br><img src="/images/hexo/33.png" alt="CNAME"></li>
+<li>在文件中写入自己的网址，注意没有”http”、”https”和”www”</li>
+<li>“commit new file”提交文件<br><img src="/images/hexo/34.png" alt="commit CNAME"></li>
+<li>进入该仓库的”settings”，往下拉设置域名<br><img src="/images/hexo/35.png" alt="settings"><br><img src="/images/hexo/31.png" alt="settings"></li>
+</ul>
+<h5 id="4-进入DNSPOD去绑定域名，设置解析"><a href="#4-进入DNSPOD去绑定域名，设置解析" class="headerlink" title="4. 进入DNSPOD去绑定域名，设置解析"></a><strong>4. 进入DNSPOD去绑定域名，设置解析</strong></h5><ul>
+<li><p>注册dnspod账户,不细说<br><a href="https://dnspod.cn/" target="_blank" rel="external">dnspod.cn</a></p>
+</li>
+<li><p>进入控制台——域名解析——添加域名<br><img src="/images/hexo/29.png" alt="添加域名"></p>
+</li>
+<li><p>添加 @ 和 www 两个主机记录，下图第一、四行红色框内的<br><img src="/images/hexo/30.png" alt="主机记录"></p>
+</li>
+<li><p>记录值可以写”用户名”+”github.io”的域名，如”yin.github.io”，也可以先ping到”用户名”+”github.io”的ip后填写进入<br><img src="/images/hexo/36.png" alt="ping"></p>
+</li>
+</ul>
+<h5 id="5-其他注意事项"><a href="#5-其他注意事项" class="headerlink" title="5. 其他注意事项:"></a><strong>5. 其他注意事项:</strong></h5><ul>
+<li>CNAME文件请同步到本地仓库，将hexo public文件更新到本地仓库时，不要把CNAME删除了。</li>
+<li>如果涉及多个设备管理博客，可以另建一个仓库，把hexo里的所有文件同步到GitHub里了。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://charmlegal.com/2017/10/20/article3/" data-id="cjat1ygd60001psf9d9multdk" class="article-share-link" data-share="baidu" data-title="hexo+git搭建自己域名博客">分享到</a>
+      
+
+      
+        <a href="http://charmlegal.com/2017/10/20/article3/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github-desktop/">github desktop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js/">node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vscode/">vscode</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/03/article4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          法律检索攻略之二——法律法规去哪里找？
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/20/article2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">法律检索攻略之一——site命令使用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2017/10/20/article3/" data-title="hexo+git搭建自己域名博客" data-url="http://charmlegal.com/2017/10/20/article3/"></div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/撸代码/">撸代码</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/法律检索攻略/">法律检索攻略</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Database/">Database</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/">MongoDB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github-desktop/">github desktop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node-js/">node.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/">vscode</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/攻略/">攻略</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/案例检索/">案例检索</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/法律检索/">法律检索</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/法律法规/">法律法规</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github-desktop/" style="font-size: 10px;">github desktop</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/node-js/" style="font-size: 10px;">node.js</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/攻略/" style="font-size: 20px;">攻略</a> <a href="/tags/案例检索/" style="font-size: 10px;">案例检索</a> <a href="/tags/法律检索/" style="font-size: 20px;">法律检索</a> <a href="/tags/法律法规/" style="font-size: 10px;">法律法规</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/11/03/article5/">法律检索攻略之三—案例的查找姿势</a>
+          </li>
+        
+          <li>
+            <a href="/2017/11/03/article4/">法律检索攻略之二——法律法规去哪里找？</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/20/article3/">hexo+git搭建自己域名博客</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/20/article2/">法律检索攻略之一——site命令使用</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/18/article1/">WINODWS系统下MONGODB的配置</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://lawtribes.com" target="_blank">律商部落LawTribes</a>
+          </li>
+        
+          <li>
+            <a href="http://arvinxiang.com" target="_blank">主题作者</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Crow<br>
+      Powered by <a href="//hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"reqianduan"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>
